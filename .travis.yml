@@ -18,6 +18,18 @@ after_success:
   - docker push eliif/multi-nginx
   - docker push eliif/multi-server
   - docker push eliif/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-us-east-2-703353052762
+  bucket_path: docker-multi
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
 
 # Take those images and push them to docker hub
 
